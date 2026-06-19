@@ -29,14 +29,13 @@ class InventoryPage:
     def itemsInfo(self):
         return self.driver.find_elements(*self.__displayedItems)
     
-    def addItemToCart(self, index):
-        itemInfo = self.itemsInfo()
-        itemName =  itemInfo[index].find_element(By.CSS_SELECTOR, "[data-test='inventory-item-name']").text
-        itemInfo[index].find_element(By.TAG_NAME, 'button').click()
-        return itemName
+    def getFirstItemName(self):
+        return self.itemsInfo()[1].find_element(By.CSS_SELECTOR, "[data-test='inventory-item-name']").text
+
+    def addFirstItemToCart(self):
+        self.getFirstItem().find_element(By.TAG_NAME, 'button').click()
 
     def checkCartCount(self):
-        cartCount = int(self.driver.find_element(*self.__itemsCount).text)
-        return cartCount
+        return int(self.driver.find_element(*self.__itemsCount).text)
     
         

@@ -11,7 +11,7 @@ def testDisplayedItems(login_in_driver):
 
 def testCartItems(login_in_driver):
     inventoryPage = InventoryPage(login_in_driver)
-    inventoryPage.addItemToCart(1)
+    inventoryPage.addFirstItemToCart()
     assert inventoryPage.checkCartCount() > 0, "No se pudo añadir al carrito"
 
 def testLogoutSuccessful(login_in_driver):
