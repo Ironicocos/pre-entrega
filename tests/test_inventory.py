@@ -24,3 +24,9 @@ def testShoppingCart(login_in_driver):
     inventoryPage = InventoryPage(login_in_driver)
     inventoryPage.shopCartButtonClick()
     assert "https://www.saucedemo.com/cart.html" in login_in_driver.current_url, "No se pudo acceder al carrito"
+
+def test_essentials(login_in_driver):
+    inventoryPage = InventoryPage(login_in_driver)
+
+    assert inventoryPage.filterAvailable(), "El filtro de catálogo no esta siendo mostrado"
+    assert inventoryPage.burgerAvailable(), "El ícono del menú no está siendo mostrado"

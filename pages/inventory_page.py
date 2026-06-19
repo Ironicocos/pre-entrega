@@ -10,9 +10,16 @@ class InventoryPage:
         self.__shoppingCartButton = (By.CLASS_NAME, "shopping_cart_link")
         self.__displayedItems = (By.CLASS_NAME, "inventory_item")
         self.__itemsCount = (By.CSS_SELECTOR, "[data-test='shopping-cart-badge']")
+        self.__filter = (By.CLASS_NAME, "product_sort_container")
 
     def burgerMenuClick(self):
         self.driver.find_element(*self.__burgerMenuDisplay).click()
+
+    def filterAvailable(self):
+        return self.driver.find_element(*self.__filter).is_displayed()
+    
+    def burgerAvailable(self):
+        return self.driver.find_element(*self.__burgerMenuDisplay).is_displayed()
 
     def logoutButtonClick(self):
         element = WebDriverWait(self.driver, 4).until(
@@ -30,10 +37,10 @@ class InventoryPage:
         return self.driver.find_elements(*self.__displayedItems)
     
     def getFirstItemName(self):
-        return self.itemsInfo()[1].find_element(By.CSS_SELECTOR, "[data-test='inventory-item-name']").text
+        return self.itemsInfo()[0].find_element(By.CSS_SELECTOR, "[data-test='inventory-item-name']").text
 
     def addFirstItemToCart(self):
-        self.getFirstItem().find_element(By.TAG_NAME, 'button').click()
+        self.itemsInfo()[0].find_element(By.TAG_NAME, 'button').click()
 
     def checkCartCount(self):
         return int(self.driver.find_element(*self.__itemsCount).text)
