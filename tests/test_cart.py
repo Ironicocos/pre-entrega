@@ -8,6 +8,9 @@ def testCartPage(cart_page):
 
 def testItem(cart_page):
     cartPage = CartPage(cart_page)
-    addedItem = cartPage.addItemToCart(1)
-    cartItems = cartPage.getCartItems(0)
-    assert cartPage.checkItems(addedItem, cartItems) == True, "Los objetos no coinciden"
+    cartPage.addItemToCart(0)
+    item1 = cartPage.getItemName(0)
+    cartPage.returnToCart()
+    item2 = cartPage.cartItemsInfo(0)
+    print(item1, item2)
+    assert item1 == item2, "Los objetos no coinciden"

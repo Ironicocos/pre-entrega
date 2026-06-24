@@ -1,6 +1,5 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-
 class CartPage:
     def __init__(self, cart_page):
         self.driver = cart_page
@@ -22,23 +21,10 @@ class CartPage:
 
     def addItemToCart(self, index):
         self.returnToInventory()
-        itemInfo = self.itemsInfo()
-        itemName =  itemInfo[index].find_element(By.CSS_SELECTOR, "[data-test='inventory-item-name']").text
-        itemInfo[index].find_element(By.TAG_NAME, 'button').click()
-        return itemName
-    
-    def cartItemsInfo(self):
-        if "/inventory.html" in self.driver.current_url:
-            self.returnToCart()
-        return self.driver.find_elements(*self.__cartItemsInfo)
+        self.itemsInfo()[index].find_element(By.TAG_NAME, 'button').click()
 
-    def getCartItems(self, index):
-        if "/inventory.html" in self.driver.current_url:
-            self.returnToCart()
-        itemInfo = self.cartItemsInfo()
-        itemName = itemInfo[index].find_element(By.CSS_SELECTOR, "[data-test='inventory-item-name']").text
-        return itemName
+    def cartItemsInfo(self, index):
+        return self.driver.find_elements(*self.__cartItemsInfo)[index].find_element(By.CSS_SELECTOR, "[data-test='inventory-item-name']").text
 
-    def checkItems(self, item1, item2):
-        if item1 == item2:
-            return True
+    def getItemName(self, index):
+        return self.itemsInfo()[index].find_element(By.CSS_SELECTOR, "[data-test='inventory-item-name']").text
