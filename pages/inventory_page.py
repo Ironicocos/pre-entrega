@@ -51,7 +51,7 @@ class InventoryPage:
         items = self.itemsInfo()
 
         for item in items:
-            name = self.driver.find_element(*self.__itemName).text
+            name = item.find_element(*self.__itemName).text
 
             if name == itemNameJSON:
                 item.find_element(*self.__addItemButton).click()
