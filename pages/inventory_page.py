@@ -11,6 +11,8 @@ class InventoryPage:
         self.__displayedItems = (By.CLASS_NAME, "inventory_item")
         self.__itemsCount = (By.CSS_SELECTOR, "[data-test='shopping-cart-badge']")
         self.__filter = (By.CLASS_NAME, "product_sort_container")
+        self.__itemName = (By.CSS_SELECTOR, "[data-test='inventory-item-name']")
+        self.__addItemButton = (By.TAG_NAME, "button")
 
     def burgerMenuClick(self):
         self.driver.find_element(*self.__burgerMenuDisplay).click()
@@ -37,12 +39,19 @@ class InventoryPage:
         return self.driver.find_elements(*self.__displayedItems)
     
     def getFirstItemName(self):
-        return self.itemsInfo()[0].find_element(By.CSS_SELECTOR, "[data-test='inventory-item-name']").text
+        return self.itemsInfo()[0].find_element(*self.__itemName).text
 
     def addFirstItemToCart(self):
-        self.itemsInfo()[0].find_element(By.TAG_NAME, 'button').click()
+        self.itemsInfo()[0].find_element(*self.__addItemButton).click()
 
     def checkCartCount(self):
         return int(self.driver.find_element(*self.__itemsCount).text)
     
-        
+    def addItemByName(self, itemNameJSON):
+        items = self.itemsInfo()
+
+        for item in items:
+            name = self.driver.find_element(*self.__itemName).text
+
+            if name == itemNameJSON:
+                item.find_element(*self.__addItemButton).click()
