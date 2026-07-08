@@ -1,0 +1,12 @@
+{
+  "tests/testLoginCSV.py::test_login[user1]": true,
+  "tests/testLoginCSV.py::test_login[user2]": true,
+  "tests/testApi.py::testSuccessfulLoginApi[cityslicka-]": true,
+  "tests/testApi.py::testFailedLoginApi": true,
+  "tests/testApi.py::testSuccessfulLoginApi[cityslicka- ]": true,
+  "tests/testApi.py::testFailedLoginApi[eve.holt@reqres.in-eve.holt@reqres.in]": true,
+  "tests/testApi/test_api.py::testSuccessfulLoginApi[cityslicka- ]": true,
+  "tests/testApi/test_api.py::testFailedLoginApi[eve.holt@reqres.in-eve.holt@reqres.in]": true,
+  "tests/testApi/test_post_lifecycle.py::testUpdateTitlePost": true,
+  "tests/test_login.py::testWrongPasswordInput": true
+}
